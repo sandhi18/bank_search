@@ -9,10 +9,10 @@ const app = express();
 
 
 const pool = new Pool.Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'banks',
-  password: 'admin',
+  user: 'toqaqhmiwfeifg',
+  host: 'ec2-54-83-201-84.compute-1.amazonaws.com',
+  database: 'dbsbfsbvhp1epd',
+  password: 'be3fa3aaef4dac208c3f10ea6b06aea938b1e9cc8084a024d93f0bf4e1b5188d',
   port: 5432,
 });
 
