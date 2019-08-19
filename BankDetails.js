@@ -18,7 +18,7 @@ const pool = new Pool.Pool({
 
 app.use(bodyParser.json());
 
-app.listen(3020, () => console.log('Listening at 3020'));
+app.listen(process.env.PORT || 3020, () => console.log('Listening at port %d in %s mode", this.address().port));
 
 
 function isAuthenticated(req, res, next) {
