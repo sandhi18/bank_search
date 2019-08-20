@@ -67,7 +67,11 @@ app.get('/getBankDetails',isAuthenticated,(req, res) => {
 	var ifsc = req.query.ifsc;
 	var limit = req.query.limit;
 	var offset = req.query.offset;
-	if(ifsc.toString() == "")
+	if(ifsc == null)
+	{
+		res.status(400).json({"Error": "IFSC Code cannot be blank!!"});		
+	}
+	else if(ifsc.toString() == "")
 	{
 		res.status(400).json({"Error": "IFSC Code cannot be blank!!"});		
 	}
@@ -96,7 +100,12 @@ app.get('/getBranches',isAuthenticated,(req, res) => {
 	var city = req.query.city;
 	var limit = req.query.limit;
 	var offset = req.query.offset;
-	if(bank.toString() == "" || city.toString() == "")
+	if(bank == null || city == null)
+	{
+		res.status(400).json({"Error": "Bank name or city name cannot be blank!!"});
+	}
+
+	else if(bank.toString() == "" || city.toString() == "")
 	{
 		res.status(400).json({"Error": "Bank name or city name cannot be blank!!"});		
 	}
