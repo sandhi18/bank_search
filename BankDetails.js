@@ -45,7 +45,12 @@ app.post('/login', (req, res) => {
 	//console.log("Login " + JSON.stringify(req.body));
 	var usr = req.body.username;
 	var pwd = req.body.password;
-	if(pwd.toString() === "getDetails@123" && usr.toString() === "sandhi")
+	if(usr == null || pwd == null)
+	{
+		res.status(400);
+		res.json({"Error" : "Request body missing required property: Username/Password!!"});	
+	}
+	else if(pwd.toString() === "getDetails@123" && usr.toString() === "sandhi")
 	{
 		var privateKey = fs.readFileSync('./key.pem', 'utf8');
     	var token = jwt.sign(req.body, privateKey, { algorithm: 'HS256'});
