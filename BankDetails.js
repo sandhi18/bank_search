@@ -1,7 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
-const convert = require('number-to-words')
 const jwt = require('jsonwebtoken')
 const Pool = require('pg')
 const fs = require('fs')
