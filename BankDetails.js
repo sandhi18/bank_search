@@ -6,14 +6,14 @@ const jwt = require('jsonwebtoken')
 const Pool = require('pg')
 const fs = require('fs')
 const app = express();
-
+require('dotenv').config();
 
 const pool = new Pool.Pool({
-  user: 'toqaqhmiwfeifg',
-  host: 'ec2-54-83-201-84.compute-1.amazonaws.com',
-  database: 'dbsbfsbvhp1epd',
-  password: 'be3fa3aaef4dac208c3f10ea6b06aea938b1e9cc8084a024d93f0bf4e1b5188d',
-  port: 5432,
+  user: process.env.DBUSER,
+  host: process.env.DBHOST,
+  database: process.env.DBNAME,
+  password: process.env.DBPWD,
+  port: process.env.DBPORT,
 });
 
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ function isAuthenticated(req, res, next) {
     if (typeof req.headers.authorization != "undefined") 
     {
         var token = req.headers.authorization.split(" ")[1];
-        var privateKey = fs.readFileSync('./key.pem', 'utf8');
+        var privateKey = fs.readFileSync(process.env.KEYFILE, 'utf8');
         jwt.verify(token, privateKey, { algorithm: "HS256",expiresIn: "5d" }, (err, user) => {
             if (err) {  
                 res.status(40).json({ error: "Not Authorized" });
